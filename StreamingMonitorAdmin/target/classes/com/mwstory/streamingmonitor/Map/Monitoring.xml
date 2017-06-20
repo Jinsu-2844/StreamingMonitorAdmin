@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 이쿼리를 이용하기 위해선 namespace명.id로 접근하면 된다. -->
+<mapper namespace="monitoring">
+	
+	<!-- dashboard 화면 실시간 수집현황   -->
+	<select id="getMonitoringList" resultType="MonitoringVO" >
+	select id, 
+		   terminal_id,
+		   site_name,
+		   title,
+	       collect_time 
+	from osp_monitoring_info 
+	order by id desc 
+	limit 6
+	</select>
+	
+	
+	
+</mapper>
