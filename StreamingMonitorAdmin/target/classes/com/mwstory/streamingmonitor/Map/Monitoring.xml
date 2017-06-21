@@ -11,12 +11,21 @@
 		   terminal_id,
 		   site_name,
 		   title,
-	       collect_time 
+	       collect_time,
+	       host,
+	       url,
+	       contents_name
 	from osp_monitoring_info 
 	order by id desc 
 	limit 6
 	</select>
 	
+	<select id="getDetails" parameterType="int" resultType="MonitoringVO">
+	
+		select * from osp_monitoring_info where id = #{id}
+	
+	</select>
+
 	
 	
 </mapper>
