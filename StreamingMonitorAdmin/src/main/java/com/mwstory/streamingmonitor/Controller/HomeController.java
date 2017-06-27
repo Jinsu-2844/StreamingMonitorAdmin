@@ -105,41 +105,52 @@ public class HomeController {
 	@RequestMapping(value = "dashboard.do")
 	public String home1(Locale locale, Model model) {
 		logger.info("인덱스.do 페이지 연결 성공!!", locale);
+		
+		//수집 현황 리스트
 		List<Osp_Monitoring_InfoVO> monitor_list = userDaoImpl.getMonitoringList();
 		model.addAttribute("monitor_list", monitor_list);
 
+		//사이트별 총 수집 수
+		
+		List<Osp_Monitoring_InfoVO> monitor_SiteTotal = userDaoImpl.getMonitoringSiteTotal();
+		model.addAttribute("mstotal", monitor_SiteTotal);
+		System.out.println("-------------사이트별 총 수집 수--------------------");
+		int all_total = 0;
+		for(int i=0; i<monitor_SiteTotal.size(); i++){
+			Osp_Monitoring_InfoVO out = monitor_SiteTotal.get(i);
+			System.out.println("사이트명 : " + out.getSite_name());
+			System.out.println("총      합 : " + out.getTot_sitesum());
+			System.out.println("----------------------------------------");
+			all_total += out.getTot_sitesum();
+		}
+		
+		System.out.println("-------------사이트별 총 수집 수 끝 ----------------");
+		System.out.println(" 전체 수집 수 : " + all_total);
+		
+		
+		
+		//하단 6개 아이콘------------------------------------------
+		
+		//총 클라이언트
+		
+		//평균 작동 시간
+		
+		//작동 중인 클라이언트
+        
+		//중지된 클라이언트
+		
+		//확인한 게시물 수
+		
+		//전체 수집 정보
+		model.addAttribute("_total", all_total);
+        //int all_total = userDaoImpl.getAllSum();
+		//System.out.println("전체 수집 정보 " + all_total);
+	    //model.addAttribute("all_total", all_total);
+		
+		
+		
 		return "index";
 	}
-	
-	/*//대쉬뵈드 게시글 상세보기
-	@RequestMapping(value = "dashboard_details.do", method = RequestMethod.GET)
-	@ResponseBody
-	public Osp_Monitoring_InfoVO Select(Locale locale, Model model, 
-			HttpServletRequest request,@RequestParam("id") String id) {
-		
-		Osp_Monitoring_InfoVO omivo = userDaoImpl.getDetails(id);
-		return omivo;
-	}*/
-	
-	/*//대쉬뵈드 게시글 상세보기
-	@RequestMapping(value = "dashboard_details.do", method = RequestMethod.POST)
-	@ResponseBody
-	public Osp_Monitoring_InfoVO Select(Locale locale, Model model, HttpServletRequest request) {
-		
-		String itm = request.getParameter("itm");
-		Osp_Monitoring_InfoVO omivo = userDaoImpl.getDetails(itm);
-		return omivo;
-	}
-	
-	 * @RequestMapping(value = "dashboard_details.do", method =
-	 * RequestMethod.GET) public ModelAndView home2(Locale locale, Model
-	 * mode,@RequestParam("id") String id) throws Exception{ System.out.
-	 * println("----------------------게시글 상세보기----------------------------");
-	 * System.out.println("id" + id); System.out.
-	 * println("----------------------게시글         끝----------------------------"
-	 * ); return new ModelAndView("redirect:dashboard.do"); }
-	 */
-
 	
 
 	@RequestMapping(value = "crawerstatus.do", method = RequestMethod.GET)

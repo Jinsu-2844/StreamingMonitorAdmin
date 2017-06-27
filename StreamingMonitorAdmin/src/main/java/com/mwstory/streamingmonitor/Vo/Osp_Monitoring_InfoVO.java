@@ -50,6 +50,42 @@ public class Osp_Monitoring_InfoVO {
 	private String lead_time = null;
 	private String confirm_flag = null;
 	private int post_id = 0;
+	
+	
+	//사이트별 합
+	private int tot_sitesum = 0;
+	
+	//전체 합
+	private int all_sum = 0;
+	
+	
+	
+	
+	
+	/**
+	 * @return all_sum
+	 */
+	public int getAll_sum() {
+		return all_sum;
+	}
+	/**
+	 * @param all_sum 설정할 all_sum
+	 */
+	public void setAll_sum(int all_sum) {
+		this.all_sum = all_sum;
+	}
+	/**
+	 * @return tot_sitesum
+	 */
+	public int getTot_sitesum() {
+		return tot_sitesum;
+	}
+	/**
+	 * @param tot_sitesum 설정할 tot_sitesum
+	 */
+	public void setTot_sitesum(int tot_sitesum) {
+		this.tot_sitesum = tot_sitesum;
+	}
 	/**
 	 * @return id
 	 */

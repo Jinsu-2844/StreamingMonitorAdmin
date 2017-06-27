@@ -7,12 +7,21 @@ import com.mwstory.streamingmonitor.Vo.Osp_Monitoring_InfoVO;
 
 
 public interface UserDao {
-    public int getLoginResult(Map<String, String> map); 
-    public List<Osp_Monitoring_InfoVO> getMonitoringList();
-   
+    //로그인
+	public int getLoginResult(Map<String, String> map); 
     
-    // 02. 게시글 상세보기
+    //대쉬보드 수집현황 리스트 시작----------------------------------
+    public List<Osp_Monitoring_InfoVO> getMonitoringList();
     public Osp_Monitoring_InfoVO getMtDetails(int id);
+    //대쉬보드 수집현황 끝 -------------------------------------------
+    
+    //대쉬보드 사이트별 총 수집 수
+    public List<Osp_Monitoring_InfoVO> getMonitoringSiteTotal();
+    /*
+   //대쉬보드 전체 수집 수
+    public  int getAllSum();
+   */
+    
     
     
     }

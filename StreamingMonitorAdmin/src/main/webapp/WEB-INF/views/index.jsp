@@ -150,10 +150,10 @@
 				</div>
 
 				<div class="row">
-					<div class="col-md-7">
+					<div class="col-md-6">
 						<div class="box box-danger">
 							<div class="box-header with-border">
-								<h3 class="box-title">실시간 수집 현황</h3>
+								<h3 class="box-title">수집 현황</h3>
 
 								<div class="box-tools pull-right">
 									<button type="button" class="btn btn-box-tool"
@@ -225,11 +225,11 @@
 						</div>
 					</div>
 
-					<div class="col-md-5">
+					<div class="col-md-3">
 						<div class="box box-danger">
 							<div class="box-header with-border">
 
-								<h3 class="box-title">페이지별 수집 진행 진척도</h3>
+								<h3 class="box-title">총 수집 수 </h3>
 
 								<div class="box-tools pull-right">
 									<button type="button" class="btn btn-box-tool"
@@ -243,7 +243,35 @@
 								</div>
 							</div>
 							<div class="box-body">
-								<div id="bar-chart" style="height: 300px;"></div>
+								<div id="bar-chart" style="height: 310px;"></div>
+							
+							
+								
+								
+							</div>
+							<!-- /.box-body-->
+						</div>
+					</div>
+					
+					<div class="col-md-3">
+						<div class="box box-danger">
+							<div class="box-header with-border">
+
+								<h3 class="box-title">오늘 수집 갯수</h3>
+
+								<div class="box-tools pull-right">
+									<button type="button" class="btn btn-box-tool"
+										data-widget="collapse">
+										<i class="fa fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-box-tool"
+										data-widget="remove">
+										<i class="fa fa-times"></i>
+									</button>
+								</div>
+							</div>
+							<div class="box-body">
+								<div id="bar-chart1" style="height: 310px;"></div>
 							</div>
 							<!-- /.box-body-->
 						</div>
@@ -365,8 +393,19 @@
 								class="fa fa-list" aria-hidden="true"></i></span>
 
 							<div class="info-box-content">
-								<span class="info-box-text">전체 수집 정보</span> <span
-									class="info-box-number">199</span>
+								<span class="info-box-text">전체 수집 정보</span> 
+								
+								<c:choose>
+										<c:when test="${_total > 0 }">
+											<span class="info-box-number">${_total }</span>
+										</c:when>
+				
+										<c:otherwise>
+											<span class="info-box-number">0</span>
+										</c:otherwise>
+								</c:choose>
+								
+								
 								<div class="progress">
 									<div class="progress-bar" style="width: 100%"></div>
 								</div>
@@ -511,13 +550,21 @@
 			 * BAR CHART
 			 * ---------
 			 */
-
-			var bar_data = {
-				data : [ [ "파일투어", 11210 ], [ "파일노리", 91237 ],
-						[ "보물섬", 41237 ], [ "토렌트킴", 31237 ], [ "애플파일", 33476 ],
-						[ "클럽박스", 1335 ] ],
-				color : "#3c8dbc"
+			var bar_data = {			 
+					data : [ [ "파일투어", 110 ], [ "파일노리", 37 ],
+						[ "보물섬", 47 ], [ "토렌트킴", 31 ], [ "애플파일", 6 ],
+						[ "클럽박스", 15 ] ],
+						
+			color : "#3c8dbc"
 			};
+			
+			var bar_data1 = {
+					data : [ [ "파일투어", 110 ], [ "파일노리", 37 ],
+							[ "보물섬", 47 ], [ "토렌트킴", 31 ], [ "애플파일", 6 ],
+							[ "클럽박스", 15 ] ],
+					color : "#3c8dbc"
+				};
+			
 			$.plot("#bar-chart", [ bar_data ], {
 				grid : {
 					borderWidth : 1,
@@ -536,7 +583,7 @@
 					tickLength : 0
 				}
 			});
-			$.plot("#bar-chart1", [ bar_data ], {
+			$.plot("#bar-chart1", [ bar_data1 ], {
 				grid : {
 					borderWidth : 1,
 					borderColor : "#f3f3f3",
@@ -554,20 +601,77 @@
 					tickLength : 0
 				}
 			});
-			/* END BAR CHART */
-
+		
 		});
+		/* END BAR CHART */
+
+		
+		
+		
+		
 	</script>
 
 
 <script type="text/javascript">
-/* $('#modal-Details').on('hidden.bs.modal', function (e) {
+	window.onload = function () {
+		var chart = new CanvasJS.Chart("chartContainer", {
 
-	
-});
- */
+			title:{
+				text:"Fortune Global 500 Companies by Country"				
 
+			},
+                        animationEnabled: true,
+			axisX:{
+				interval: 1,
+				gridThickness: 0,
+				labelFontSize: 10,
+				labelFontStyle: "normal",
+				labelFontWeight: "normal",
+				labelFontFamily: "Lucida Sans Unicode"
+
+			},
+			axisY2:{
+				interlacedColor: "rgba(1,77,101,.2)",
+				gridColor: "rgba(1,77,101,.1)"
+
+			},
+
+			data: [
+			{     
+				type: "bar",
+                name: "companies",
+				axisYType: "secondary",
+				color: "#014D65",				
+				dataPoints: [
+				
+				{y: 5, label: "Sweden"  },
+				{y: 6, label: "Taiwan"  },
+				{y: 7, label: "Russia"  },
+				{y: 8, label: "Spain"  },
+				{y: 8, label: "Brazil"  },
+				{y: 8, label: "India"  },
+				{y: 9, label: "Italy"  },
+				{y: 9, label: "Australia"  },
+				{y: 12, label: "Canada"  },
+				{y: 13, label: "South Korea"  },
+				{y: 13, label: "Netherlands"  },
+				{y: 15, label: "Switzerland"  },
+				{y: 28, label: "Britain" },
+				{y: 32, label: "Germany"   },
+				{y: 32, label: "France"  },
+				{y: 68, label: "Japan"   },
+				{y: 73, label: "China"},
+				{y: 132, label: "US" }
+				]
+			}
+			
+			]
+		});
+
+chart.render();
+}
 </script>
+
 
 
 </body>

@@ -25,7 +25,18 @@
 		select * from osp_monitoring_info where id = #{id}
 	
 	</select>
-
+	
+	<select id="getSiteTotal" resultType="MonitoringVO">
+	
+		select site_name, count(site_name) as tot_sitesum from osp_monitoring_info group by site_name
+	
+	</select>
+<!-- 
+	
+	<select id="getAllSumResult" resultType="int">
+		select count(*) from osp_monitoring_info
+	</select>
+	 -->
 	
 	
 </mapper>

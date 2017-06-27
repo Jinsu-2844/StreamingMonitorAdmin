@@ -100,17 +100,32 @@
 	</div>
 </div>
 <div class="modal-footer">
-	<button type="button" class="btn btn-danger">
-		수집URL 복사(아직X)
+<%-- 	<button type="button" class="btn btn-danger" onclick="copy_to_clipboard('${details.url}');">
+ --%>
+ 	<button type="button" class="btn btn-danger" onclick="window.open('${details.url}');">
+ 
+ 		수집URL이동
 	</button>
-	<button type="button" class="btn btn-danger">
-		스트리밍URL 복사(아직X)
-	</button>
+	
 	<button type="button" class="btn btn-danger" data-dismiss="modal">
 		<i class="ace-icon fa fa-times"></i> 닫기
 	</button>
 </div>
-
-<script type="text/javascript">
-
-</script>
+<!-- 
+<script type="text/javaScript">
+function is_ie() {
+  if(navigator.userAgent.toLowerCase().indexOf("chrome") != -1) return false;
+  if(navigator.userAgent.toLowerCase().indexOf("msie") != -1) return true;
+  if(navigator.userAgent.toLowerCase().indexOf("windows nt") != -1) return true;
+  return false;
+}
+ 
+function copy_to_clipboard(str) {
+  if( is_ie() ) {
+    window.clipboardData.setData("Text", str);
+    alert("복사되었습니다.");
+    return;
+  }
+  prompt("Ctrl + C를 눌러 복사하세요.", str);
+}
+</script> -->
