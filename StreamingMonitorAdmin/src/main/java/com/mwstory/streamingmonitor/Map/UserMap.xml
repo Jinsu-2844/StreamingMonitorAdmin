@@ -14,14 +14,6 @@
 		AND PASSWORD = #{password}
 	</select>
 	
-	<!-- <insert id="setRegister" parameterType="MemberVO">
-	insert into member(member_no, email, password, name, grade, regdate) 
-	values(member_seq.nextval, #{email},#{password},#{name},1,sysdate)
-	</insert>
-	
-	<select id="getMemberList" resultType="MemberVO" >
-	select * from member order by member_no desc
-	</select> -->
-	
+
 	
 </mapper>

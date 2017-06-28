@@ -151,7 +151,7 @@
 				</div>
 
 				<div class="row">
-					<div class="col-md-7">
+					<div class="col-md-6">
 						<div class="box box-danger">
 							<div class="box-header with-border">
 								<h3 class="box-title">수집 현황</h3>
@@ -219,18 +219,18 @@
 							<!-- /.box-body -->
 							<div class="box-footer clearfix">
 
-								<a href="#"
+								<a href="collectinglist.do"
 									class="btn btn-sm btn-default btn-flat pull-right">모두 보기</a>
 							</div>
 							<!-- /.box-footer -->
 						</div>
 					</div>
 
-					<div class="col-md-5">
+					<div class="col-md-3">
 						<div class="box box-danger">
 							<div class="box-header with-border">
 
-								<h3 class="box-title">클라이언트 정보</h3>
+								<h3 class="box-title">총 수집 수 </h3>
 
 								<div class="box-tools pull-right">
 									<button type="button" class="btn btn-box-tool"
@@ -244,65 +244,17 @@
 								</div>
 							</div>
 							<div class="box-body">
-								
-							<div class="table-responsive" height="300px">
-									<table class="table no-margin hover">
-										<thead>
-											<tr>
-												<th>터미널ID</th>
-												<th>운영체제</th>
-												<th>호스트</th>
-												<th>시작시간</th>
-												<th>끝난시간</th>
-												<th></th>
-											</tr>
-										</thead>
-
-										<tbody>
-
-
-
-											<c:forEach var="terminal_list" items="${terminal_list}">
-												<tr>
-													<td>${terminal_list.terminal_id}</td>
-													<td>${terminal_list.os}</td>
-													<td>${terminal_list.host}</td>
-													<td>${terminal_list.start_time}</td>
-													<td>${terminal_list.end_time}</td>
-													<td>
-														<a data-toggle="modal" href="view_terminal.do?terminal_id=${terminal_list.terminal_id}" data-target="#modal-Details${terminal_list.terminal_id}" role="button">
-														<i class="fa fa-search-plus" aria-hidden="true"></i></a>
-													</td>
-												</tr>
-									<div id="modal-Details${terminal_list.terminal_id}" class="modal fade" tabindex="-1" role="dialog">
-											<div class="modal-dialog">
-												<div class="modal-content">
-												
-												</div>
-											</div>
-									</div>
-											</c:forEach>
-
-										</tbody>
-									</table>
-									
-									
-									
-								</div>
+								<div id="bar-chart" style="height: 310px;"></div>
+							
+							
 								
 								
 							</div>
 							<!-- /.box-body-->
-						
-						<div class="box-footer clearfix">
-						<a href="#"
-									class="btn btn-sm btn-default btn-flat pull-right">모두 보기</a>
-						</div>
-						
 						</div>
 					</div>
 					
-					<!-- <div class="col-md-3">
+					<div class="col-md-3">
 						<div class="box box-danger">
 							<div class="box-header with-border">
 
@@ -322,10 +274,10 @@
 							<div class="box-body">
 								<div id="bar-chart1" style="height: 310px;"></div>
 							</div>
-							/.box-body
+							<!-- /.box-body-->
 						</div>
 					</div>
- -->
+
 				</div>
 
 
@@ -446,7 +398,7 @@
 
 							<div class="info-box-content">
 								<span class="info-box-text">평균 작동 시간</span> <span
-									class="info-box-number">${_avgtime}</span>
+									class="info-box-number">2,000</span>
 								<div class="progress">
 									<div class="progress-bar" style="width: 100%"></div>
 								</div>

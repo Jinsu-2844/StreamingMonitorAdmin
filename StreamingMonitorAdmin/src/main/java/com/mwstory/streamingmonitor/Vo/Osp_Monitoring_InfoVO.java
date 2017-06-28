@@ -55,25 +55,10 @@ public class Osp_Monitoring_InfoVO {
 	//사이트별 합
 	private int tot_sitesum = 0;
 	
-	//전체 합
-	private int all_sum = 0;
 	
 	
 	
 	
-	
-	/**
-	 * @return all_sum
-	 */
-	public int getAll_sum() {
-		return all_sum;
-	}
-	/**
-	 * @param all_sum 설정할 all_sum
-	 */
-	public void setAll_sum(int all_sum) {
-		this.all_sum = all_sum;
-	}
 	/**
 	 * @return tot_sitesum
 	 */

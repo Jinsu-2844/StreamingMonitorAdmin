@@ -20,23 +20,43 @@
 	limit 6
 	</select>
 	
+
+	
 	<select id="getDetails" parameterType="int" resultType="MonitoringVO">
-	
 		select * from osp_monitoring_info where id = #{id}
-	
 	</select>
 	
 	<select id="getSiteTotal" resultType="MonitoringVO">
-	
 		select site_name, count(site_name) as tot_sitesum from osp_monitoring_info group by site_name
-	
 	</select>
-<!-- 
+
 	
-	<select id="getAllSumResult" resultType="int">
-		select count(*) from osp_monitoring_info
+
+	
+	<select id="getTerminalList" resultType="TerminalVO" >
+	select * from osp_terminal_info order by terminal_id desc
 	</select>
-	 -->
+
+	<select id="getTerminalCount" resultType="int" >
+	select count(*) from osp_terminal_info
+	</select>
+	
+	<select id="getTerminalWorkingY" resultType="int" >
+	select count(*) from osp_terminal_info where working_flag = 'y'
+	</select>
+	
+	<select id="getTerminalWorkingN" resultType="int" >
+	select count(*) from osp_terminal_info where working_flag = 'n'
+	</select>
+	
+	<select id="getTerminalDetails" parameterType="int" resultType="TerminalVO">
+		select * from osp_terminal_info where terminal_id = #{terminal_id}
+	</select>
+	
+	<select id="getAvgTime" resultType="int" >
+		select truncate(avg(timestampdiff(hour, start_time, end_time)),0) from osp_terminal_info;
+	</select>
+	
 	
 	
 </mapper>

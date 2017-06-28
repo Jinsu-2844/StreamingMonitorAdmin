@@ -3,6 +3,18 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.mwstory.streamingmonitor.Vo.Osp_Monitoring_InfoVO"
-			alias="MonitoringVO" /> 
+			alias="MonitoringVO" />
+		<typeAlias type="com.mwstory.streamingmonitor.Vo.Osp_Terminal_InfoVO"
+			alias="TerminalVO" />
+		<typeAlias type="com.mwstory.streamingmonitor.Vo.Osp_Management_InfoVO"
+			alias="ManagementVO" />
+		<typeAlias type="com.mwstory.streamingmonitor.Vo.Osp_Seed_Url_InfoVO"
+			alias="SeedUrlVO" />
+		<typeAlias type="com.mwstory.streamingmonitor.Vo.Osp_Seed_Url_Result_InfoVO"
+			alias="SeedResultVO" />
+		<typeAlias type="com.mwstory.streamingmonitor.Vo.Osp_Statistics_InfoVO"
+			alias="StatisticsVO" />
+		<typeAlias type="com.mwstory.streamingmonitor.Vo.Osp_Url_Meta_InfoVO"
+			alias="MetaVO" />
 	</typeAliases>
 </configuration>

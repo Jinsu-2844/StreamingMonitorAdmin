@@ -36,6 +36,25 @@ public class Osp_Terminal_InfoVO {
 	private String end_time = null;
 	private String host = null;
 	private String monitoring_site = null;
+	
+	private int sum_terminal = 0; //돌고있는 터미널 총 갯수 
+	
+	
+	
+	
+	/**
+	 * @return sum_terminal
+	 */
+	public int getSum_terminal() {
+		return sum_terminal;
+	}
+	/**
+	 * @param sum_terminal 설정할 sum_terminal
+	 */
+	public void setSum_terminal(int sum_terminal) {
+		this.sum_terminal = sum_terminal;
+	}
+
 	/**
 	 * @return terminal_id
 	 */

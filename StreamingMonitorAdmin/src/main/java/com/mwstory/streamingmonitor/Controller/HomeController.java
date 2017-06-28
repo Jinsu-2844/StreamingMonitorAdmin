@@ -32,6 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mwstory.streamingmonitor.Dao.UserDaoImpl;
 import com.mwstory.streamingmonitor.Vo.Osp_Monitoring_InfoVO;
+import com.mwstory.streamingmonitor.Vo.Osp_Terminal_InfoVO;
 
 @Controller
 public class HomeController {
@@ -102,6 +103,7 @@ public class HomeController {
 	 * model.addAttribute("serverTime", formattedDate ); return "index"; }
 	 */
 
+	
 	@RequestMapping(value = "dashboard.do")
 	public String home1(Locale locale, Model model) {
 		logger.info("인덱스.do 페이지 연결 성공!!", locale);
@@ -109,9 +111,12 @@ public class HomeController {
 		//수집 현황 리스트
 		List<Osp_Monitoring_InfoVO> monitor_list = userDaoImpl.getMonitoringList();
 		model.addAttribute("monitor_list", monitor_list);
-
-		//사이트별 총 수집 수
 		
+		//터미널 리스트
+		List<Osp_Terminal_InfoVO> terminal_list = userDaoImpl.getTerminalList(); 
+		model.addAttribute("terminal_list", terminal_list);
+		
+		//사이트별 총 수집 수
 		List<Osp_Monitoring_InfoVO> monitor_SiteTotal = userDaoImpl.getMonitoringSiteTotal();
 		model.addAttribute("mstotal", monitor_SiteTotal);
 		System.out.println("-------------사이트별 총 수집 수--------------------");
@@ -129,20 +134,41 @@ public class HomeController {
 		
 		
 		
+		
+		
 		//하단 6개 아이콘------------------------------------------
 		
 		//총 클라이언트
+		int sum_client = userDaoImpl.getCountTerminal();
+		System.out.println(sum_client);
+		model.addAttribute("_clienttot", sum_client); 
+		
 		
 		//평균 작동 시간
+		//SELECT TIMESTAMPDIFF(HOUR,'2003-02-01 11:05:55','2003-02-01 12:05:55'); 
+		//시작시간 끝시간을 이용하면 1시간을 작동한 것을 알 수 있다.
+		//select truncate(avg(timestampdiff(hour, start_time, end_time)),0) from osp_terminal_info;
+		int avg_time = userDaoImpl.getAvgTime();
+		model.addAttribute("_avgtime", avg_time); 
+		
+		
+		
+		
 		
 		//작동 중인 클라이언트
-        
+        int working_y = userDaoImpl.getWorkingYTerminal();
+        System.out.println(working_y);
+        model.addAttribute("working_y", working_y); 
+		
 		//중지된 클라이언트
+        int working_n = userDaoImpl.getWorkingNTerminal();
+        System.out.println(working_n);
+        model.addAttribute("working_n", working_n); 
 		
 		//확인한 게시물 수
 		
 		//전체 수집 정보
-		model.addAttribute("_total", all_total);
+		model.addAttribute("_total", all_total); 
         //int all_total = userDaoImpl.getAllSum();
 		//System.out.println("전체 수집 정보 " + all_total);
 	    //model.addAttribute("all_total", all_total);
@@ -177,6 +203,21 @@ public class HomeController {
         
         // 뷰에 전달할 데이터
         mav.addObject("details", userDaoImpl.getMtDetails(id));
+        
+        return mav;
+    }
+    
+    @RequestMapping(value="view_terminal.do", method=RequestMethod.GET)
+    public ModelAndView viewTerminal(@RequestParam int terminal_id, HttpSession session) throws Exception{
+        
+    	// 모델(데이터)+뷰(화면)를 함께 전달하는 객체
+        ModelAndView mav = new ModelAndView();
+        
+        // 뷰의 이름
+        mav.setViewName("terminal_details");
+        
+        // 뷰에 전달할 데이터
+        mav.addObject("details", userDaoImpl.getTerminalDetails(terminal_id));
         
         return mav;
     }
